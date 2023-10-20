@@ -47,9 +47,8 @@ function Personscreen() {
   
   
   return (
-    <>
-  <ScrollView className='flex-1 bg-neutral-800'     contentContainerStyle={{paddingBottom:20}}>
-  <SafeAreaView className={" z-20 w-full flex-row justify-between items-center px-4  "+ verticalMargin}>
+    <View className=' bg-neutral-900'>
+  <SafeAreaView className={"   w-full flex-row justify-between items-center px-4  "+ verticalMargin}>
         <TouchableOpacity style={styles.background} className='rounded-xl p-1' onPress={()=>navigation.goBack()}>
         <ChevronLeftIcon size='28' strokeWidth={2.5} color='gray'/>
         </TouchableOpacity>
@@ -57,6 +56,8 @@ function Personscreen() {
         <HeartIcon size="35"  color={favorite?theme.background:"gray"}/>
       </TouchableOpacity>
         </SafeAreaView>
+  <ScrollView className=''     contentContainerStyle={{paddingBottom:20}}>
+
         <View>
         <View className='flex-row justify-center '
       style={{
@@ -120,7 +121,7 @@ Hoy is the most accomplished deaf player in MLB history, and is credited by some
   </ScrollView>
 
 
-    </>
+    </View>
   )
 }
 

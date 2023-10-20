@@ -5,8 +5,16 @@ import HomeScreen from "../Screens/Home/HomeScreen";
 import MovieScreen from "../Screens/MovieScreen/MovieScreen";
 import PersonScreen from "../Screens/PersonScreen/Personscreen";
 import Searchscreen from "../Screens/SearchScreen/Searchscreen";
-const Stack = createNativeStackNavigator();
+export type StackNavigationPropType={
+  Home:undefined;
+  Movie:{
+    imdbID:string;
+  };
+  Person:undefined;
+  search:undefined;
 
+}
+const Stack = createNativeStackNavigator<StackNavigationPropType>();
 export default function AppNavigation() {
   return (
     <NavigationContainer>

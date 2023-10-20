@@ -22,6 +22,9 @@ import { XMarkIcon } from "react-native-heroicons/outline";
 import LoadingScreen from "../../Components/Loading";
 import axios from "axios";
 import { debounce } from "lodash";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackNavigationPropType } from "../../Navigation/AppNavigation";
+import { useRoute } from "@react-navigation/native";
 
 type SearchType = {
   Response: string;
@@ -33,13 +36,21 @@ type SearchType = {
     Year: string;
   }>;
 };
+type NavigationProps=NativeStackNavigationProp<StackNavigationPropType>
 
 export default function Searchscreen() {
-  const Navigation = useNavigation();
+  const Navigation = useNavigation<NavigationProps>();
   const [result, SetResult] = useState<SearchType["Search"]>();
   const { width, height } = Dimensions.get("window");
   const [loading, SetLoading] = useState(false);
   const searchValue= useRef<string>("");
+  // const route = useRoute();
+  // const params = route.params as RouteParams;
+  
+  // const imdbIDs = params.imdbID;
+  // const { params: item } = useRoute();
+  // const imdbID = route.params.id;
+  
 
   let MovieName = "fffffffffffffffffdsfdsa dsdsfsda dsfdsfdse  fdewfdsfewf ";
   // useEffect(() => {
@@ -124,7 +135,7 @@ export default function Searchscreen() {
                 return (
                   <TouchableWithoutFeedback
                     key={index}
-                    onPress={() => Navigation.navigate("Movie")}
+                    onPress={() => Navigation.navigate("Movie",{imdbID:item.imdbID})}
                   >
                     <View className="space-y-2  mb-4">
                       <Image
@@ -132,9 +143,9 @@ export default function Searchscreen() {
                         source={{ uri: item.Poster }}
                         style={{ width: width * 0.44, height: height * 0.3 }}
                       />
-                      {/* <Text className='text-neutral-400 ml-2'>dz
-                        {item.Title.length>22?item.Title.slice(0,22)+'...':item.Title}
-                    </Text> */}
+                      <Text className='text-neutral-400 ml-2'>dz
+                        {item.Title.length>20?item.Title.slice(0,20)+'...':item.Title}
+                    </Text>
                     </View>
                   </TouchableWithoutFeedback>
                 );

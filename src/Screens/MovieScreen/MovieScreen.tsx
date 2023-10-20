@@ -39,6 +39,11 @@ type ItemType = {
   Genre:string;
   Plot:string;
 };
+type RouteParams= {
+  imdbID: string; // Assuming id is a string, adjust the type accordingly
+}
+
+
 // export type CastType={
 //   Actors: string;
 //   Awards: string;
@@ -69,6 +74,10 @@ type ItemType = {
 export default function MovieScreen() {
   const { width, height } = Dimensions.get("window");
   const { params: item } = useRoute();
+  const route = useRoute();
+  const params = route.params as RouteParams;
+  
+
 
   const [movie, SetMovie] = useState<ItemType|null>(null);
   const navigation = useNavigation();
@@ -116,14 +125,13 @@ useEffect(()=>{
 
     <>
       {movie ? (
-          <ScrollView
-          contentContainerStyle={{ paddingBottom: 20 }}
-          className="flex-1 bg-neutral-900"
-        >
-          <View className="w-full">
+      
+          <>
+          
+          <View className="w-full bg-neutral-900  ">
             <SafeAreaView
               className={
-                "w-full flex-row justify-between items-center px-4  " +
+                "w-full flex-row justify-between items-center px-4 py-2  " +
                 topMargin
               }
             >
@@ -142,6 +150,10 @@ useEffect(()=>{
               </TouchableOpacity>
             </SafeAreaView>
           </View>
+          <ScrollView
+          contentContainerStyle={{ paddingBottom: 20 }}
+          className=" bg-neutral-900"
+        >
           <View>
             <Image
               source={movie?.Poster !== "N/A" ? { uri: movie?.Poster } : require("../../assets/images/moviePoster2.png")}
@@ -156,7 +168,7 @@ useEffect(()=>{
             className="space-y-3 justify-center"
             style={{ marginTop: -(height * 0.09) }}
           >
-            <Text className="text-pink-700 text-center text-3xl font-bold tracking-wider justify-center">
+            <Text className="text-white text-center text-3xl font-bold tracking-wider justify-center">
               
               {movie.Title}
             </Text>
@@ -190,7 +202,8 @@ useEffect(()=>{
           </Text>
           {cast && <Cast cast={cast} />}
           <MoviesList  hideSeeAll={true} data={similarmovies} />
-        </ScrollView>
+         </ScrollView>
+          </>
       ) : (
         <ActivityIndicator />
       )}
