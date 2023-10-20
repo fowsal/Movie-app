@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {
     View,
     Text,
@@ -9,6 +9,7 @@ import {
     Animated,
     Platform,
     ScrollView,
+    TouchableOpacity
   } from "react-native";
   import { SafeAreaView } from "react-native-safe-area-context";
   import { StatusBar } from 'expo-status-bar';
@@ -18,14 +19,55 @@ import {
   import {styles} from '../../Theme'
   import TrendingMovies from '../../Components/TrendingMovies';
   import MoviesList from '../../Components/MoviesList';
-
+  import { useNavigation } from "@react-navigation/native";
+  import Loadingscreen from "../../Components/Loading"
+  import { fetchTrendingMovies,fetchuTopMovies,fetchupcomingMovies } from '../../../api/moviedb';
 
   const ios=Platform.OS == 'ios';
 
 export default function HomeScreen() {
- const  [trending,SetTrending]=useState([1,2,3,4,5,6,7,8])
- const [upComing,SetUpComing]=useState([1,2,3,4,5,6,7,8])
- const [topRatedMovies,SetTopRatedMovies]=useState([1,2,3,4,5,6,7,8])
+ const  [trending,SetTrending]=useState([])
+ const [upComing,SetUpComing]=useState([])
+ const [loading,SetLoading]=useState(true)
+
+ const [topRatedMovies,SetTopRatedMovies]=useState([])
+ const Navigation=useNavigation()
+
+ useEffect(()=>{
+  getTrendingMovies();
+ },[])
+
+
+ useEffect(()=>{
+  getUpcomingMovies();
+ },[])
+ 
+ useEffect(()=>{
+  getTopRated();
+ },[])
+
+
+ const getTrendingMovies = async()=>{
+  const data= await fetchTrendingMovies();
+  // console.log('gottttttttttttttttt',data)
+  if(data&&data.Search)SetTrending(data.Search);
+  SetLoading(false)
+ }
+
+
+ const getUpcomingMovies = async()=>{
+  const data= await fetchupcomingMovies();
+  // console.log('upppppppppp',data)
+  if(data&&data.Search)SetUpComing(data.Search);
+  SetLoading(false)
+ }
+
+ const getTopRated = async()=>{
+  const data= await fetchuTopMovies();
+  // console.log('toppppppppppppppppppp',data)
+  if(data&&data.Search)SetTopRatedMovies(data.Search);
+  SetLoading(false)
+ }
   return (
   
    <View className='flex-1 bg-neutral-800'>
@@ -35,12 +77,26 @@ export default function HomeScreen() {
         <Bars3CenterLeftIcon color='white' strokeWidth={2}/>
         <Text className="text-white text-2xl font-bold">
           <Text style={styles.text}>M</Text>ovies</Text>
+          <Pressable onPress={()=>Navigation.navigate("search")}>
+
         <MagnifyingGlassIcon color='white' strokeWidth={2}/>
+          </Pressable>
       
       </View>
     
 
     </SafeAreaView>
+
+    {loading?(
+      <Loadingscreen/>
+
+    ):(
+
+
+
+
+
+
     <ScrollView
     showsVerticalScrollIndicator={false}
     contentContainerStyle={{paddingBottom:10}}
@@ -49,6 +105,7 @@ export default function HomeScreen() {
       <MoviesList title="Upcoming" data={upComing}/>
       <MoviesList title="Top Rated" data={topRatedMovies}/>
     </ScrollView>
+    )}
     
 
    </View>

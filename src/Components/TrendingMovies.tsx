@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function TrendingMovies({ data }: { data: Array<any> }) {
   const { width, height } = Dimensions.get("window");
-  // const navigation=useNavigation()
+  const navigation=useNavigation()
  
   // const renderItem = ({ item }: any) => {
   //   return (
@@ -57,15 +57,16 @@ export default function TrendingMovies({ data }: { data: Array<any> }) {
 
 
 const MovieCard=({item,handleClick}:any)=>{
-  const navigation=useNavigation()
-  // const handleClick=()=>{
-  //   // navigation.navigate("Movie")
-  // }
+  const navigation=useNavigation<any>()
+  
   const { width, height } = Dimensions.get("window"); 
   return(
-    <Pressable onPress={()=>navigation.navigate("Movie")}>
+    <Pressable onPress={()=>navigation.navigate("Movie",item)}>
       <Image 
-      source={require('../assets/images/moviePoster2.png')}
+      
+      source={item.Poster !== "N/A" ? { uri: item.Poster } : require("../assets/images/moviePoster2.png")}
+
+      // source={require('../assets/images/moviePoster2.png')}
       style={{
         width: width*0.6,
         height: height*0.4
