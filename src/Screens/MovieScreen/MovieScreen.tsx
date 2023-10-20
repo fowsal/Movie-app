@@ -103,7 +103,7 @@ export default function MovieScreen() {
 
 const getsimilarmovieDetails= async()=>{
   const data= await fetchupcomingMovies();
-  console.log('upppppppppp',data)
+  // console.log('upppppppppp',data)
   if(data&&data.Search)SetsimilarMovies(data.Search);
   SetLoading(false)
   

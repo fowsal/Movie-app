@@ -68,9 +68,9 @@ export default function Searchscreen() {
   const getSearchDetails = async () => {
     try {
         const endPoint=`https://www.omdbapi.com/?s=${searchValue.current}&apikey=f8ddcb66`
-        console.log(endPoint)
+        // console.log(endPoint)
       const response = await axios.get<SearchType>(endPoint);
-      console.log("search input value", response.data);
+    //   console.log("search input value", response.data);
       if (response.status === 200) {
         SetResult(response.data.Search);
       }
@@ -84,7 +84,7 @@ export default function Searchscreen() {
   };
 
   const handleTextDebounce = useCallback(debounce(handleSearch, 400), []);
-  console.log("RESULT", result);
+//   console.log("RESULT", result);
   return (
     <>
       <SafeAreaView className="bg-neutral-800 flex-1">

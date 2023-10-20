@@ -16,15 +16,15 @@ const apicall= async(endpoint:any,)=>{
         url:endpoint,
         // params:params? params:{}
     }
-    console.log("End point inside api call",endpoint)
+    // console.log("End point inside api call",endpoint)
 
     try{
         const response= await axios.get(endpoint);
-        console.log(response)
+        // console.log(response)
         return response.data;
 
     }catch(error){
-    console.log('error',error)
+    // console.log('error',error)
     return{}
 }
 }
