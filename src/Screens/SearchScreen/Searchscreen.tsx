@@ -149,7 +149,7 @@ export default function Searchscreen() {
               </View>
             )}
           </View>
-        </ScrollView> : <Text>Please Enter movie names to search</Text>}
+        </ScrollView> : <Text className="text-white mt-4"> search something...</Text>}
       </SafeAreaView>
     </>
   );
