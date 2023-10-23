@@ -78,7 +78,7 @@ function Personscreen() {
         } */}
                 <View className='rounded-full overflow-hidden h-72 w-72 border-2 border-neutral-600 items-center'>
 
-<Image source={require('../../assets/images/moviePoster2.png')}
+<Image source={{uri:'../../assets/images/moviePoster2.png'}}
 style={{
   height:height*0.43, width:width*0.74
 }}

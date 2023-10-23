@@ -51,7 +51,7 @@ export default function Cast({ cast }: any) {
                       //     ? { uri: cast?.Poster }
                       //     : require("../assets/images/moviePoster2.png")
                       // }
-                      source={require('../assets/images/moviePoster2.png')}
+                      source={{uri:'../assets/images/moviePoster2.png'}}
                       className="rounded-2xl h-24 w-26"
                     />
                   </View>

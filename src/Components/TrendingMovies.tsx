@@ -64,7 +64,7 @@ const MovieCard=({item,handleClick}:any)=>{
     <Pressable onPress={()=>navigation.navigate("Movie",item)}>
       <Image 
       
-      source={item.Poster !== "N/A" ? { uri: item.Poster } : require("../assets/images/moviePoster2.png")}
+      source={{uri:item.Poster !== "N/A" ? item.Poster  : "../assets/images/moviePoster2.png"}}
 
       // source={require('../assets/images/moviePoster2.png')}
       style={{

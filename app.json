@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.fowsal.movieapp"
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9c8cc42a-0472-4e4d-a2a0-d4b56ab0476a"
+      }
+    },
+    "owner": "fowsal"
   }
 }

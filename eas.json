@@ -1,0 +1,22 @@
+{
+    "build": {
+      "development":{
+        "channel": "dev",
+        "android": {
+          "buildType": "app-bundle"
+        }
+      },
+      "production":{
+        "channel": "prod",
+        "android": {
+          "buildType": "app-bundle"
+        }
+      },
+      "test":{
+        "channel": "test",
+        "android": {
+          "buildType": "apk"
+        }
+      }
+    }
+  }

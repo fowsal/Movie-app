@@ -44,11 +44,14 @@ export default function MoviesList({ data, title, hideSeeAll }: any) {
             >
               <View className="space-y-1 mr-4 mb-4 mt-4">
                 <Image
-                  source={
-                    item.Poster !== "N/A"
-                      ? { uri: item.Poster }
-                      : require("../assets/images/moviePoster2.png")
-                  }
+                  source={{uri:item.Poster !== "N/A"
+                  ? item.Poster 
+                  :"../assets/images/moviePoster2.png"}}
+                  // source={
+                  //   item.Poster !== "N/A"
+                  //     ? { uri: item.Poster }
+                  //     : require("../assets/images/moviePoster2.png")
+                  // }
                   // source={{uri:item.Poster}}
                   className="rounded-3xl"
                   style={{

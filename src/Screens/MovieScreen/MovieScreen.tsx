@@ -156,7 +156,8 @@ useEffect(()=>{
         >
           <View>
             <Image
-              source={movie?.Poster !== "N/A" ? { uri: movie?.Poster } : require("../../assets/images/moviePoster2.png")}
+              source={
+                {uri:movie?.Poster !== "N/A" ? movie.Poster  : "../../assets/images/moviePoster2.png"}}
               style={{
                 height: height * 0.45,
                 width,
